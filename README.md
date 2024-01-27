@@ -31,3 +31,29 @@ So we have two targets to build, one for the controller and another for the outp
 - Add to bashrc the SDK Path
 - Make sure Makefiles check the $ENV(SDK PATH)
 - voila!
+- Add steps for setting up your workspace: clone 
+
+# Setup for development on Linux!
+## Setup Pico Development workspace
+
+1. Install the necessary packages
+
+```
+sudo apt update
+sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+```
+
+2. Clone the pico-sdk repository into your home directory
+
+```
+git clone https://github.com/raspberrypi/pico-sdk.git --branch master ~/pico-sdk
+cd ~/pico-sdk
+git submodule update --init
+```
+
+3. Add PICO_SDK_PATH to your bashrc
+
+```
+echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.bashrc
+source ~/.bashrc
+```
