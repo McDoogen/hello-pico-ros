@@ -22,3 +22,12 @@ So we have two targets to build, one for the controller and another for the outp
 - Add the Potentiometer
 - Split the project into two targets
 - Add the Servo Target
+
+
+
+
+# Pico Setup Steps
+- Clone the project into home directory
+- Add to bashrc the SDK Path
+- Make sure Makefiles check the $ENV(SDK PATH)
+- voila!
