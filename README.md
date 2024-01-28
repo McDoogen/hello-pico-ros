@@ -34,9 +34,9 @@ So we have two targets to build, one for the controller and another for the outp
 - Add steps for setting up your workspace: clone 
 
 # Setup for development on Linux!
-## Setup Pico Development workspace
+## Setup Pico Development Workspace with [Pico-SDK](https://github.com/raspberrypi/pico-sdk)
 
-1. Install the necessary packages
+1. Install the Toolchain
 
 ```
 sudo apt update
@@ -57,3 +57,56 @@ git submodule update --init
 echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.bashrc
 source ~/.bashrc
 ```
+
+## Setup [Picotool](https://github.com/raspberrypi/picotool)
+
+1. Install dependencies
+
+```
+sudo apt install build-essential pkg-config libusb-1.0-0-dev cmake
+```
+
+2. Clone picotool into your home directory
+
+```
+git clone git@github.com:raspberrypi/picotool.git ~/
+cd ~/picotool
+```
+
+3. Build Picotool!
+
+```
+mkdir build
+cd build
+cmake ../
+make
+```
+
+4. Copy the CLI binary into your local binaries directory
+
+```
+sudo cp picotool/build/picotool /usr/local/bin/
+```
+
+5. Now you can run picotool from any terminal!
+```
+sudo picotool info
+sudo picotool load src/hello/hello.uf2
+```
+
+6. You can also remove the picotool repository from your home directory. We don't need that anymore.
+
+```
+rm -rf ~/picotool
+```
+
+
+
+## TODO: What else needs to be set up?
+- ROS
+- Micro-ROS Agent
+- VS Code, extensions, setup CMake environment, selecting a kit, also check picoween
+
+
+# Build this project
+...
