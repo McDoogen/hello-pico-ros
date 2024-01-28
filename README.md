@@ -17,7 +17,7 @@ So what is this project?
 So we have two targets to build, one for the controller and another for the outputs
 
 # Tasks
-- Build a Hello World Pi Pico build
+- ~~Build a Hello World Pi Pico build~~
 - Convert it into a pi Pico ROS build
 - Add the Potentiometer
 - Split the project into two targets
@@ -32,6 +32,15 @@ So we have two targets to build, one for the controller and another for the outp
 - Make sure Makefiles check the $ENV(SDK PATH)
 - voila!
 - Add steps for setting up your workspace: clone 
+
+
+
+# Useful Pi Pico Documentation
+
+- [Getting Started with Raspberry Pi Pico](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf)
+- [Pi Pico Pinout Diagram](https://pico.pinout.xyz/)
+
+
 
 # Setup for development on Linux!
 ## Setup Pico Development Workspace with [Pico-SDK](https://github.com/raspberrypi/pico-sdk)
@@ -57,6 +66,24 @@ git submodule update --init
 echo "export PICO_SDK_PATH=$HOME/pico-sdk" >> ~/.bashrc
 source ~/.bashrc
 ```
+
+
+
+## Setup VSCode
+
+1. Install VSCode
+
+```
+sudo apt install code
+```
+
+2. Install VSCode Extensions
+
+```
+code --install-extension marus25.cortex-debug code --install-extension ms-vscode.cmake-tools code --install-extension ms-vscode.cpptools
+```
+
+
 
 ## Setup [Picotool](https://github.com/raspberrypi/picotool)
 
@@ -102,11 +129,20 @@ rm -rf ~/picotool
 
 
 
+## Setup ROS Humble
+
+This project uses ROS 2 Humble. You can set that up by following the procedure documented [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
+
+
+
+## Setup Micro-ROS Agent
+TODO: https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk/tree/humble
+
 ## TODO: What else needs to be set up?
-- ROS
-- Micro-ROS Agent
-- VS Code, extensions, setup CMake environment, selecting a kit, also check picoween
+- Loading the uf2, monitoring the PI PICO minicom -b 115200 -o -D /dev/ttyACM0
+- How do I use that debugger probe too?
 
 
 # Build this project
-...
+
+3. Select the **GCC arm-none-eabi** kit under Configure, and Build using the CMake extension. Voila!
