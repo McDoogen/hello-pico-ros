@@ -135,7 +135,14 @@ This project uses ROS 2 Humble. You can set that up by following the procedure d
 
 
 
-## Setup Micro-ROS Agent
+## Setup [Micro-ROS for Pico](https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk)
+
+1. Clone the micro-ros for pico repository
+
+```
+git clone git@github.com:micro-ROS/micro_ros_raspberrypi_pico_sdk.git --branch humble lib/micro-ros
+```
+
 TODO: https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk/tree/humble
 
 ## TODO: What else needs to be set up?
