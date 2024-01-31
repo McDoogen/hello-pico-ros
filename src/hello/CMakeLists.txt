@@ -3,8 +3,8 @@ add_executable(hello
 )
 
 # Add pico_stdlib library which aggregates commonly used features
-target_link_libraries(hello pico_stdlib microros)
-target_include_directories(hello PUBLIC ${CMAKE_SOURCE_DIR}/lib/micro-ros/libmicroros/include)
+target_link_libraries(hello pico_stdlib microros)   #TODO:DS: What is microros here?
+target_include_directories(hello PUBLIC ${micro_ros_SOURCE_DIR}/libmicroros/include)
 
 # Do I need these?
 SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")

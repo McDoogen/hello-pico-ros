@@ -135,16 +135,6 @@ This project uses ROS 2 Humble. You can set that up by following the procedure d
 
 
 
-## Setup [Micro-ROS for Pico](https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk)
-
-1. Clone the micro-ros for pico repository
-
-```
-git clone git@github.com:micro-ROS/micro_ros_raspberrypi_pico_sdk.git --branch humble lib/micro-ros
-```
-
-TODO: https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk/tree/humble
-
 ## TODO: What else needs to be set up?
 - Loading the uf2, monitoring the PI PICO minicom -b 115200 -o -D /dev/ttyACM0
 - How do I use that debugger probe too?
@@ -153,3 +143,7 @@ TODO: https://github.com/micro-ROS/micro_ros_raspberrypi_pico_sdk/tree/humble
 # Build this project
 
 3. Select the **GCC arm-none-eabi** kit under Configure, and Build using the CMake extension. Voila!
+
+
+# TODO
+- Should I just automatically fetch pico-sdk as well? Seems easier... :P
