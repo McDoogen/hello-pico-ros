@@ -35,8 +35,7 @@ int main()
 #include <std_msgs/msg/int32.h>
 #include <rmw_microros/rmw_microros.h>
 
-#include "pico/stdlib.h"
-#include "pico_uart_transports.h"
+// #include "pico_uart_transports.h"
 
 /*
 const uint LED_PIN = 25;
