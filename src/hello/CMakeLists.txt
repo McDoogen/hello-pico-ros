@@ -1,5 +1,9 @@
+#TODO:DS: Why can't I mix C & C++?
+#TODO:DS: Should I do C for micro-ros and C++ for ROS on Ubuntu?
+
 add_executable(hello
     hello.cpp
+    pico_uart_transport.c
 )
 
 # Add pico_stdlib library which aggregates commonly used features
