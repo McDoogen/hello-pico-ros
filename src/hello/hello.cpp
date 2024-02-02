@@ -3,42 +3,13 @@
 #include "hardware/gpio.h"
 
 #include <rcl/rcl.h>
-
-
-int main()
-{
-#ifndef PICO_DEFAULT_LED_PIN
-#warning blink example requires a board with a regular LED
-#else
-    const uint LED_PIN = PICO_DEFAULT_LED_PIN;
-    gpio_init(LED_PIN);
-    gpio_set_dir(LED_PIN, GPIO_OUT);
-    while (true)
-    {
-        gpio_put(LED_PIN, 1);
-        sleep_ms(250);
-        gpio_put(LED_PIN, 0);
-        sleep_ms(250);
-    }
-#endif
-}
-
-
-
-// Below is ROS stuff...
-
-
-
 #include <rcl/error_handling.h>
 #include <rclc/rclc.h>
 #include <rclc/executor.h>
 #include <std_msgs/msg/int32.h>
 #include <rmw_microros/rmw_microros.h>
 
-// #include "pico_uart_transports.h"
-
-/*
-const uint LED_PIN = 25;
+#include "pico_uart_transports.h"
 
 rcl_publisher_t publisher;
 std_msgs__msg__Int32 msg;
@@ -60,6 +31,7 @@ int main()
 		pico_serial_transport_read
 	);
 
+    const uint LED_PIN = PICO_DEFAULT_LED_PIN;
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
@@ -110,5 +82,3 @@ int main()
     }
     return 0;
 }
-
-*/
