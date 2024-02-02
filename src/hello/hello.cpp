@@ -9,7 +9,10 @@
 #include <std_msgs/msg/int32.h>
 #include <rmw_microros/rmw_microros.h>
 
-#include "pico_uart_transports.h"
+extern "C"
+{
+    #include "pico_uart_transport.h"
+}
 
 rcl_publisher_t publisher;
 std_msgs__msg__Int32 msg;
