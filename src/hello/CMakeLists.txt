@@ -1,6 +1,3 @@
-#TODO:DS: Why can't I mix C & C++?
-#TODO:DS: Should I do C for micro-ros and C++ for ROS on Ubuntu?
-
 add_executable(hello
     hello.cpp
     pico_uart_transport.c
@@ -9,10 +6,6 @@ add_executable(hello
 # Add pico_stdlib library which aggregates commonly used features
 target_link_libraries(hello pico_stdlib microros)   #TODO:DS: What is microros here?
 target_include_directories(hello PUBLIC ${micro_ros_SOURCE_DIR}/libmicroros/include)
-
-# Do I need these?
-SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ffunction-sections -fdata-sections")
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -ffunction-sections -fdata-sections")
 
 # Configure Pico
 pico_enable_stdio_usb(hello 1)
