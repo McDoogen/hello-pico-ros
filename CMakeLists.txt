@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 pico_sdk_init()
 
+#TODO:DS: Can I add an 'IF' so we only log this if it is not available?
 message("Fetching micro_ros repository...")
 FetchContent_Declare(
   micro_ros
@@ -22,3 +23,4 @@ FetchContent_MakeAvailable(micro_ros)
 link_directories(${micro_ros_SOURCE_DIR}/libmicroros)
 
 add_subdirectory(src/hello)
+add_subdirectory(src/potentiometer_reader)
