@@ -118,7 +118,7 @@ sudo cp picotool/build/picotool /usr/local/bin/
 5. Now you can run picotool from any terminal!
 ```
 sudo picotool info
-sudo picotool load src/hello/hello.uf2
+sudo picotool load build/src/hello/hello.uf2
 ```
 
 6. You can also remove the picotool repository from your home directory. We don't need that anymore.
@@ -138,12 +138,18 @@ This project uses ROS 2 Humble. You can set that up by following the procedure d
 ## TODO: What else needs to be set up?
 - Loading the uf2, monitoring the PI PICO minicom -b 115200 -o -D /dev/ttyACM0
 - How do I use that debugger probe too?
+- micro-ros-agent? https://ubuntu.com/blog/getting-started-with-micro-ros-on-raspberry-pi-pico
 
 
 # Build this project
 
 3. Select the **GCC arm-none-eabi** kit under Configure, and Build using the CMake extension. Voila!
 
+
+# Sub Directories (rename this, please)
+
+- [hello](src/hello/hello.md)
+- [potentiometer_reader](src/potentiometer_reader/potentiometer_reader.md)
 
 # TODO
 - Should I just automatically fetch pico-sdk as well? Seems easier... :P
