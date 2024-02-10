@@ -24,3 +24,4 @@ link_directories(${micro_ros_SOURCE_DIR}/libmicroros)
 
 add_subdirectory(src/hello)
 add_subdirectory(src/potentiometer_reader)
+add_subdirectory(src/servo_spinner)
