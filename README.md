@@ -83,6 +83,8 @@ sudo apt install code
 code --install-extension marus25.cortex-debug code --install-extension ms-vscode.cmake-tools code --install-extension ms-vscode.cpptools
 ```
 
+> Note: If you are using VSCode's "Remote Explore" to code over SSH, then make sure to reboot after setting up environment variables otherwise CMake will not be able to locate PICO_SDK_PATH
+
 
 
 ## Setup [Picotool](https://github.com/raspberrypi/picotool)
@@ -96,7 +98,7 @@ sudo apt install build-essential pkg-config libusb-1.0-0-dev cmake
 2. Clone picotool into your home directory
 
 ```
-git clone git@github.com:raspberrypi/picotool.git ~/
+git clone git@github.com:raspberrypi/picotool.git ~/picotool
 cd ~/picotool
 ```
 
@@ -112,7 +114,7 @@ make
 4. Copy the CLI binary into your local binaries directory
 
 ```
-sudo cp picotool/build/picotool /usr/local/bin/
+sudo cp ~/picotool/build/picotool /usr/local/bin/
 ```
 
 5. Now you can run picotool from any terminal!
