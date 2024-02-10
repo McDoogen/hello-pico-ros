@@ -135,6 +135,11 @@ rm -rf ~/picotool
 
 This project uses ROS 2 Humble. You can set that up by following the procedure documented [here](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html).
 
+And to source your ROS2 Environment on every session, run this command
+
+```
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+```
 
 
 ## TODO: What else needs to be set up?
