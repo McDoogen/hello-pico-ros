@@ -20,9 +20,28 @@ extern "C"
 rcl_subscription_t subscriber;
 std_msgs__msg__Int32 msg;
 
+const uint SERVO1_PIN = 14;
+const float LOWER_PULSE = 0.5;
+const float UPPER_PULSE = 1.0;
+
 void subscription_callback(const void * msgin)
 {
     //TODO:DS: How can I get a log of what is being displayed? Should I just publish it back?
+    //TODO:DS: 0 - 4095 uint32?
+    // scale 0-4095 to 0.5 to 1.0
+    //0.00012 + 0.5
+    // now, what is msgin?
+    /* Wire Colors
+        Brown : GND
+        Red : VCC
+        Orange : CTRL
+    */
+    std_msgs__msg__Int32* msg = (std_msgs__msg__Int32*) msgin;
+    
+    float pulse = msg->data * 0.00012 + 0.5;
+    
+    uint angle_1 = 65465 / (20 / pulse);
+    pwm_set_gpio_level(SERVO1_PIN, angle_1);
 }
 
 int main()
@@ -37,7 +56,7 @@ int main()
 	);
 
     const uint LED_PIN = PICO_DEFAULT_LED_PIN;
-    const uint SERVO1_PIN = 14;
+    
 
     stdio_init_all();
     adc_init();

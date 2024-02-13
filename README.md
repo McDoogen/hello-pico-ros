@@ -18,10 +18,10 @@ So we have two targets to build, one for the controller and another for the outp
 
 # Tasks
 - ~~Build a Hello World Pi Pico build~~
-- Convert it into a pi Pico ROS build
-- Add the Potentiometer
-- Split the project into two targets
+- ~~Convert it into a pi Pico ROS build~~
+- ~~Add the Potentiometer~~
 - Add the Servo Target
+- Split the project into two targets
 
 
 
@@ -141,6 +141,19 @@ And to source your ROS2 Environment on every session, run this command
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
 
+## Setup micro-ros-agent
+
+1. Follow the instructions for Building the micro-ros-setup package on ROS2 [here](https://github.com/micro-ROS/micro_ros_setup?tab=readme-ov-file#building)
+
+2. Follow the instructions for Building and running the micro-ros-agent [here](https://github.com/micro-ROS/micro_ros_setup?tab=readme-ov-file#building-micro-ros-agent)
+
+#TODO:DS: Example
+```
+ros2 run micro_ros_agent micro_ros_agent serial -D /dev/ttyACM0
+```
+
+#TODO:DS: Redo this for our project. Simplify the steps from the repo and specify it for humble. Or should we just use the docker container?
+
 
 ## TODO: What else needs to be set up?
 - Loading the uf2, monitoring the PI PICO minicom -b 115200 -o -D /dev/ttyACM0
@@ -160,3 +173,4 @@ echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
 # TODO
 - Should I just automatically fetch pico-sdk as well? Seems easier... :P
+- Add wiring diagrams for the projects
