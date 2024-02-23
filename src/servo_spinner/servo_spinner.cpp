@@ -21,26 +21,59 @@ rcl_subscription_t subscriber;
 std_msgs__msg__Int32 msg;
 
 const uint SERVO1_PIN = 14;
+const uint LED_PIN = PICO_DEFAULT_LED_PIN;
 const float LOWER_PULSE = 0.5;
-const float UPPER_PULSE = 1.0;
+const float UPPER_PULSE = 2.5;
 
 void subscription_callback(const void * msgin)
 {
     //TODO:DS: How can I get a log of what is being displayed? Should I just publish it back?
     //TODO:DS: 0 - 4095 uint32?
+    //TODO:DS: Move this documentation to the servo_spinner.md
+    //TODO:DS: Let's move this all into a library to use for RC motor control
     // scale 0-4095 to 0.5 to 1.0
     //0.00012 + 0.5
     // now, what is msgin?
-    /* Wire Colors
-        Brown : GND
-        Red : VCC
-        Orange : CTRL
+    /* RC Servo Information
+        Wire Colors
+            Brown : GND
+            Red : VCC
+            Orange : CTRL
+        
+        Typical Pulse Calculation (source: https://en.wikipedia.org/wiki/Servo_control)
+            These ranges can vary, but this is the basic concept
+            20ms period for each pulse
+            1.0 ms at VCC and remaining 19.0ms at 0V for -90 deg
+            1.5 ms at VCC and remaining 18.5ms at 0V for 0 deg
+            2.0 ms at VCC and remaining 18.0ms at 0V for 90 deg
+
+        Pi Pico PWM Period Preparation (Source: Pi Pico Datasheet Section 4.5 - https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf)
+            This step sets up the PWM to operate at 20ms period
+            Default RP2040 Clock Speed: 125 MHz
+            period = ( TOP + 1 ) x (CSR_PH_CORRECT + 1) x ( DIV_INT + DIV_FRAC/16 ) [Source: 4.5.2.6]
+            TOP (0 - 65536)         = 65465     -> pwm_set_wrap(SERVO1_SLICE_NUM,65465);
+            CSR_PH_CORRECT (0 - 1)  = 0         -> 
+            DIV_INT (1.f - 256.f)   = 38
+            DIV_FRAC                = 3
+            DIV                     = 38.1875f  -> pwm_set_clkdiv(SERVO1_SLICE_NUM, 38.1875f);
+
+        Pi Pico PWM Channel Level
+            This step sets up the PWM pulse that sets the RC Servo position
+            -90 : pwm_set_gpio_level(SERVO1_PIN, 65465 / (20 / 1.0f) );
+            0   : pwm_set_gpio_level(SERVO1_PIN, 65465 / (20 / 1.5f) );
+            90  : pwm_set_gpio_level(SERVO1_PIN, 65465 / (20 / 2.0f) );
+            ^ Double check that this is all correct :D
+
+
     */
     std_msgs__msg__Int32* msg = (std_msgs__msg__Int32*) msgin;
     
-    float pulse = msg->data * 0.00012 + 0.5;
+    float pulse = (msg->data * 0.00012) + 0.5;
     
-    uint angle_1 = 65465 / (20 / pulse);
+    //TODO:DS: Test out setting pulse to something like 0.5 to test
+
+    // uint angle_1 = 65465 / (20 / pulse);
+    uint angle_1 = 65465 / (20 / 0.5f);
     pwm_set_gpio_level(SERVO1_PIN, angle_1);
 }
 
@@ -55,18 +88,10 @@ int main()
 		pico_serial_transport_read
 	);
 
-    const uint LED_PIN = PICO_DEFAULT_LED_PIN;
-    
-
     stdio_init_all();
-    adc_init();
 
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
-
-    adc_gpio_init(26);
-    adc_select_input(0);
-
 
     rcl_timer_t timer;
     rcl_node_t node;
@@ -112,11 +137,16 @@ int main()
     pwm_set_wrap(SERVO1_SLICE_NUM,65465);
     pwm_set_enabled(SERVO1_SLICE_NUM, true);
 
+    //TODO:DS: Test, set to lowest angle
+    uint angle_1 = 65465 / (20 / 1.0f);
+    pwm_set_gpio_level(SERVO1_PIN, angle_1);
+
 
     msg.data = 0;
     while (true)
     {
         rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+
     }
     return 0;
 }
