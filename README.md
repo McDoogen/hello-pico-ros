@@ -174,6 +174,6 @@ ros2 run micro_ros_agent micro_ros_agent serial -D /dev/ttyACM0
 # TODO
 - Should I just automatically fetch pico-sdk as well? Seems easier... :P
 - Add wiring diagrams for the projects
-- ros2 topic pub --once /pico_subscriber std_msgs/msg/Int32 '{data:100}'
+- ros2 topic pub --once /pico_subscriber std_msgs/msg/Int32 '{"data":100}'
 - Getting closer.... the servo moves, but it always maxes out...
 
