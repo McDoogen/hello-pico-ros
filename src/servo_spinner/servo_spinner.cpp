@@ -71,9 +71,11 @@ void subscription_callback(const void * msgin)
     float pulse = (msg->data * 0.00012) + 0.5;
     
     //TODO:DS: Test out setting pulse to something like 0.5 to test
+    //TODO:DS: Ok! It's working! :D Let's change this to send the angle over a twist type message instead of just an int32
+    //TODO:DS: Also we need to come back and clean up these documents now :)
 
-    // uint angle_1 = 65465 / (20 / pulse);
-    uint angle_1 = 65465 / (20 / 0.5f);
+    uint angle_1 = 65465 / (20 / pulse);
+    // uint angle_1 = 65465 / (20 / 1.0f);
     pwm_set_gpio_level(SERVO1_PIN, angle_1);
 }
 
@@ -145,7 +147,7 @@ int main()
     msg.data = 0;
     while (true)
     {
-        rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
+                rclc_executor_spin_some(&executor, RCL_MS_TO_NS(100));
 
     }
     return 0;
